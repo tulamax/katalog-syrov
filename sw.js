@@ -1,5 +1,5 @@
 // Кэш каталога для работы без интернета. Версия меняется при каждой публикации.
-const CACHE = 'katalog-02eafda08e';
+const CACHE = 'katalog-8dd09dbe86';
 const FILES = ['./', 'index.html', 'manifest.webmanifest', 'icon-180.png', 'icon-192.png', 'icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));
