@@ -1,0 +1,541 @@
+{
+ "categories": {
+  "hard": "Твёрдые",
+  "blue": "Голубые",
+  "soft": "Мягкие",
+  "goat": "Козий",
+  "special": "С добавками"
+ },
+ "products": [
+  {
+   "id": 1,
+   "name": "Frico козий",
+   "category": "goat",
+   "description": "Frico Chevrette Mild. 100% пастеризованное козье молоко, выдержка 5 недель. Мягкий, нежный вкус, белая мякоть, умеренная солёность. Нидерланды.",
+   "price": null,
+   "available": true,
+   "photo": "images/1.jpg",
+   "sort": 1
+  },
+  {
+   "id": 2,
+   "name": "Balgrano козий",
+   "category": "goat",
+   "description": "Твёрдый итальянский сыр из козьего молока. Зернистая рассыпчатая текстура, лёгкая сладость с ореховыми нотами и едва уловимой пикантностью. Длительная выдержка.",
+   "price": null,
+   "available": true,
+   "photo": "images/2.jpg",
+   "sort": 2
+  },
+  {
+   "id": 3,
+   "name": "Balgrano корова",
+   "category": "hard",
+   "description": "Коровий сыр Balgrano, классический вкус. Плотная текстура, подходит для нарезки и кулинарии.",
+   "price": null,
+   "available": true,
+   "photo": "images/3.jpg",
+   "sort": 3
+  },
+  {
+   "id": 4,
+   "name": "Primadonna красная (Maturo)",
+   "category": "hard",
+   "description": "Prima Donna Maturo (Vandersterre, Нидерланды) — выдержка около 14 месяцев. Голландский сыр на итальянских заквасках: пикантно-сладкий вкус с ореховыми и карамельными нотами, плотная текстура, кристаллы созревания.",
+   "price": null,
+   "available": true,
+   "photo": "images/4.jpg",
+   "sort": 4
+  },
+  {
+   "id": 5,
+   "name": "Primadonna чёрная (Forte)",
+   "category": "hard",
+   "description": "Prima Donna Forte — самая выдержанная в линейке, около 24 месяцев. Рассыпчатая текстура, много кристаллов созревания, насыщенный солоноватый вкус с карамелью и орехами, ближе к пармезану.",
+   "price": null,
+   "available": true,
+   "photo": "images/5.jpg",
+   "sort": 5
+  },
+  {
+   "id": 6,
+   "name": "Landana 1000 дн",
+   "category": "hard",
+   "description": "Гауда выдержки 1000 дней. За время созревания теряет 25% веса. Плотная, слегка рассыпчатая текстура с кристаллами. Полный, насыщенный вкус.",
+   "price": null,
+   "available": true,
+   "photo": "images/6.jpg",
+   "sort": 6
+  },
+  {
+   "id": 7,
+   "name": "Landana 500",
+   "category": "hard",
+   "description": "Landana 500 DAYS — выдержка более 16 месяцев. Крепкая рассыпчатая структура с хрустящими солевыми кристаллами, орехово-карамельный пикантный вкус. 100% голландское коровье молоко.",
+   "price": null,
+   "available": true,
+   "photo": "images/7.jpg",
+   "sort": 7
+  },
+  {
+   "id": 8,
+   "name": "1001 ночь",
+   "category": "hard",
+   "description": "Brokkel Kaas «1001 ночь» — экстра-выдержанный голландский сыр, 3–4 года. Медовый цвет, очень плотная текстура: не режется ножом, только разламывается. Яркий солоновато-ореховый вкус, хрустящие кристаллы. Практически без лактозы.",
+   "price": null,
+   "available": true,
+   "photo": "images/8.jpg",
+   "sort": 8
+  },
+  {
+   "id": 9,
+   "name": "Chevrano XO",
+   "category": "goat",
+   "description": "Chèvrano XO (Van der Heiden Kaas) — козий сыр экстра-выдержки, 12+ месяцев на сосновых досках, головки в ткани и чёрном воске. Плотная текстура цвета слоновой кости, маслянисто-молочный вкус с карамельной нотой.",
+   "price": null,
+   "available": true,
+   "photo": "images/9.jpg",
+   "sort": 9
+  },
+  {
+   "id": 10,
+   "name": "Tartufo козий",
+   "category": "special",
+   "description": "Tartufo — фермерский голландский козий сыр с настоящим чёрным итальянским трюфелем. Созревание 8–12 недель, за это время сыр пропитывается ароматом трюфеля. Нежная эластичная текстура, сливочная мягкость.",
+   "price": null,
+   "available": true,
+   "photo": "images/10.jpg",
+   "sort": 10
+  },
+  {
+   "id": 11,
+   "name": "Tartufo корова",
+   "category": "special",
+   "description": "Tartufo Original — фермерский голландский сыр из коровьего молока с чёрным трюфелем. Светлая сырная масса с вкраплениями трюфеля, насыщенный землистый аромат.",
+   "price": null,
+   "available": true,
+   "photo": "images/11.jpg",
+   "sort": 11
+  },
+  {
+   "id": 12,
+   "name": "Jersey розовый",
+   "category": "hard",
+   "description": "Гауда из молока коров джерсейской породы — оно жирнее и слаще обычного, поэтому сыр особенно сливочный. Выдержанная (mature) версия с красно-розовой этикеткой: полный вкус, лёгкая пикантность.",
+   "price": null,
+   "available": true,
+   "photo": "images/12.jpg",
+   "sort": 12
+  },
+  {
+   "id": 13,
+   "name": "Jersey синий",
+   "category": "hard",
+   "description": "Гауда из молока коров джерсейской породы — оно жирнее и слаще обычного, поэтому сыр особенно сливочный. Версия с синей этикеткой: более мягкий, молодой вкус.",
+   "price": null,
+   "available": true,
+   "photo": "images/13.jpg",
+   "sort": 13
+  },
+  {
+   "id": 14,
+   "name": "Veenmeester Truffel",
+   "category": "special",
+   "description": "Veenmeester Botanica Truffel — голландский сыр с трюфелем. Кремовая текстура, землистый вкус с глубоким умами. Коровье молоко.",
+   "price": null,
+   "available": true,
+   "photo": "images/14.jpg",
+   "sort": 14
+  },
+  {
+   "id": 15,
+   "name": "Veenmeester XO",
+   "category": "hard",
+   "description": "Veenmeester Anno59 XO — экстра-выдержанный голландский сыр в чёрном воске. Насыщенный вкус, плотная текстура с кристаллами созревания.",
+   "price": null,
+   "available": true,
+   "photo": "images/15.jpg",
+   "sort": 15
+  },
+  {
+   "id": 16,
+   "name": "Old Amsterdam",
+   "category": "hard",
+   "description": "Old Amsterdam Classic — оригинальный Old Amsterdam. Слегка рассыпчатый, с тонкими кристаллами созревания, полный вкус и пикантный характер. Классика голландского сыроделия.",
+   "price": null,
+   "available": true,
+   "photo": "images/16.jpg",
+   "sort": 16
+  },
+  {
+   "id": 17,
+   "name": "Old Amsterdam Reserve",
+   "category": "hard",
+   "description": "Old Amsterdam Reserve — премиальная выдержанная гауда для ценителей. Глубокий насыщенный вкус с нотами бурбона, карамели и пекана; плотная рассыпчатая текстура с хрустящими кристаллами созревания.",
+   "price": null,
+   "available": true,
+   "photo": "images/17.jpg",
+   "sort": 17
+  },
+  {
+   "id": 18,
+   "name": "Old Amsterdam козий",
+   "category": "goat",
+   "description": "Old Amsterdam Goat — выдержанный козий сыр. Гладкая сливочная текстура в сочетании с хрустом кристаллов созревания, глубокий золотистый цвет, вкус с нотами карамели и орехов. Награда Super Gold на World Cheese Awards.",
+   "price": null,
+   "available": true,
+   "photo": "images/18.jpg",
+   "sort": 18
+  },
+  {
+   "id": 19,
+   "name": "Basiron лаванда",
+   "category": "special",
+   "description": "Basiron Lavender (Veldhuyzen Kaas) — нежный сливочный сыр типа гауда с лавандой: цветочный аромат, фиолетовый цвет.",
+   "price": null,
+   "available": true,
+   "photo": "images/19.jpg",
+   "sort": 19
+  },
+  {
+   "id": 20,
+   "name": "Basiron лимончелло",
+   "category": "special",
+   "description": "Basiron Limoncello — сливочный сыр типа гауда с лимоном: яркая цитрусовая нотка, жёлтый цвет.",
+   "price": null,
+   "available": true,
+   "photo": "images/20.jpg",
+   "sort": 20
+  },
+  {
+   "id": 21,
+   "name": "Basiron tricolore",
+   "category": "special",
+   "description": "Basiron Tricolore — три цвета и три вкуса в одной головке: красный с красным перцем, зелёный с паприкой и белый — настоящий козий сыр.",
+   "price": null,
+   "available": true,
+   "photo": "images/21.jpg",
+   "sort": 21
+  },
+  {
+   "id": 22,
+   "name": "Basiron чёрный лимон",
+   "category": "special",
+   "description": "Basiron Black Lemon — гауда, вдохновлённая азиатской кухней: чёрный лимон даёт освежающий вкус лимона и лайма, активированный уголь — чёрный цвет и лёгкую лакричную ноту.",
+   "price": null,
+   "available": true,
+   "photo": "images/22.jpg",
+   "sort": 22
+  },
+  {
+   "id": 23,
+   "name": "Montana синяя (Delicato)",
+   "category": "hard",
+   "description": "Montana Delicato (Veldhuyzen Kaas) — выдержанный голландский сыр, созревает на деревянных полках не менее 25 недель. Сладковатый, умеренно пикантный вкус.",
+   "price": null,
+   "available": true,
+   "photo": "images/23.jpg",
+   "sort": 23
+  },
+  {
+   "id": 24,
+   "name": "Montana красная (Intenso)",
+   "category": "hard",
+   "description": "Montana Intenso — экстра-выдержанный голландский сыр, не менее 45 недель на деревянных полках. Сладкий и очень пикантный вкус. «Лучший голландский сыр» на International Cheese Awards 2018 и 2019.",
+   "price": null,
+   "available": true,
+   "photo": "images/24.jpg",
+   "sort": 24
+  },
+  {
+   "id": 25,
+   "name": "Corsaro Nero",
+   "category": "hard",
+   "description": "Corsaro Nero — сардинский овечий сыр с характерной чёрной коркой (несъедобной). Выдержка от 90 дней, плотная текстура, выраженный, слегка острый ароматный вкус.",
+   "price": null,
+   "available": true,
+   "photo": "images/25.jpg",
+   "sort": 25
+  },
+  {
+   "id": 26,
+   "name": "Pecorino romano куски 1 кг",
+   "category": "hard",
+   "description": "Pecorino Romano DOP — твёрдый овечий сыр, выдержка 8–12 месяцев. Солёный, интенсивный, слегка пикантный. Идеален для пасты и тёрки. Куски по 1 кг.",
+   "price": null,
+   "available": true,
+   "photo": "images/26.jpg",
+   "sort": 26
+  },
+  {
+   "id": 27,
+   "name": "Pecorino romano nero куски 1 кг",
+   "category": "hard",
+   "description": "Pecorino Romano с чёрной коркой (scorza nera) — классический овечий Romano в традиционном чёрном покрытии. Плотная текстура, интенсивный солёный вкус. Куски по 1 кг.",
+   "price": null,
+   "available": true,
+   "photo": "images/27.jpg",
+   "sort": 27
+  },
+  {
+   "id": 28,
+   "name": "Grana padano куски 1.2 кг",
+   "category": "hard",
+   "description": "Grana Padano DOP — итальянский твёрдый сыр, выдержка 9–24 месяца. Зернистая текстура, сладковатый вкус, ореховые ноты. Варится в медных котлах. Куски по 1,2 кг.",
+   "price": null,
+   "available": true,
+   "photo": "images/28.jpg",
+   "sort": 28
+  },
+  {
+   "id": 29,
+   "name": "Норв. завтрак (брюност) красный",
+   "category": "special",
+   "description": "Норвежский коричневый сыр брюност (Gudbrandsdalsost, TINE). Варится из сыворотки с добавлением козьего и коровьего молока и сливок. Сладковато-солёный карамельный вкус. Традиционная часть норвежского завтрака — на хлеб и вафли.",
+   "price": null,
+   "available": true,
+   "photo": "images/29.jpg",
+   "sort": 29
+  },
+  {
+   "id": 30,
+   "name": "Ильчестер манго-апельсин",
+   "category": "special",
+   "description": "Ilchester Wensleydale with Mango & Orange — сливочный, слегка творожистый, рассыпчатый Уэнслидейл с кусочками манго и апельсина.",
+   "price": null,
+   "available": true,
+   "photo": "images/30.jpg",
+   "sort": 30
+  },
+  {
+   "id": 31,
+   "name": "Ильчестер манго-имбирь",
+   "category": "special",
+   "description": "Ilchester Wensleydale with Mango & Ginger — Уэнслидейл с манго и имбирём. Фруктово-пряный, сладковатый вкус.",
+   "price": null,
+   "available": true,
+   "photo": "images/31.jpg",
+   "sort": 31
+  },
+  {
+   "id": 32,
+   "name": "Ильчестер шоколад-апельсин",
+   "category": "special",
+   "description": "Ilchester Wensleydale with Chocolate & Orange — Уэнслидейл с кусочками молочного и белого шоколада и апельсиновой цедрой. Готовый десерт.",
+   "price": null,
+   "available": true,
+   "photo": "images/32.jpg",
+   "sort": 32
+  },
+  {
+   "id": 33,
+   "name": "Ильчестер клюква",
+   "category": "special",
+   "description": "Ilchester Wensleydale with Cranberries — самый популярный Уэнслидейл с добавками: сливочный, слегка кисловатый сыр с сочной клюквой и медовым послевкусием.",
+   "price": null,
+   "available": true,
+   "photo": "images/33.jpg",
+   "sort": 33
+  },
+  {
+   "id": 34,
+   "name": "Манчего чёрный трюфель",
+   "category": "special",
+   "description": "Овечий сыр Манчего с чёрным итальянским трюфелем. PDO, провинция Вега Манча, Испания. Выдержка 3+ месяца.",
+   "price": null,
+   "available": true,
+   "photo": "images/34.jpg",
+   "sort": 34
+  },
+  {
+   "id": 35,
+   "name": "Бавария блю",
+   "category": "blue",
+   "description": "Bavaria blu (Bergader, с 1972 г.) — немецкий голубой сыр с белой и синей плесенью. Пастеризованное молоко из Баварских Альп, ручная работа, без консервантов. Кремовая консистенция, пикантный пряный вкус.",
+   "price": null,
+   "available": true,
+   "photo": "images/35.jpg",
+   "sort": 35
+  },
+  {
+   "id": 36,
+   "name": "Монтаньоло золотая",
+   "category": "blue",
+   "description": "Montagnolo Affiné (Käserei Champignon, золотая упаковка) — мягкий голубой сыр тройной сливочности с поверхностным созреванием. Маслянистый, слегка пикантный, тает во рту. Supreme Champion International Cheese Awards 2013.",
+   "price": null,
+   "available": true,
+   "photo": "images/36.jpg",
+   "sort": 36
+  },
+  {
+   "id": 37,
+   "name": "Монтаньоло чёрная",
+   "category": "blue",
+   "description": "Montagnolo (Käserei Champignon, чёрная упаковка) — мягкий голубой сыр с кремовой текстурой и двумя видами плесени.",
+   "price": null,
+   "available": true,
+   "photo": "images/37.jpg",
+   "sort": 37
+  },
+  {
+   "id": 38,
+   "name": "Landana Truffle",
+   "category": "special",
+   "description": "Landana Truffle — голландский сыр из пастеризованного коровьего молока с чёрным трюфелем, белыми грибами и пажитником. Плотная текстура, насыщенный трюфельный аромат.",
+   "price": null,
+   "available": true,
+   "photo": "images/38.jpg",
+   "sort": 38
+  },
+  {
+   "id": 39,
+   "name": "Castello ananas",
+   "category": "special",
+   "description": "Castello Pineapple & Almond — кольцо из мягкого сливочного сыра с кусочками ананаса, цукатами папайи и жареным миндалём. Тропические ноты, лёгкий хруст. Золотая медаль Global Cheese Awards 2015. 125 г.",
+   "price": null,
+   "available": true,
+   "photo": "images/39.jpg",
+   "sort": 39
+  },
+  {
+   "id": 40,
+   "name": "Дорблю Польша",
+   "category": "blue",
+   "description": "Dorblu из Польши. Голубой сыр с пикантным вкусом.",
+   "price": null,
+   "available": true,
+   "photo": "images/40.jpg",
+   "sort": 40
+  },
+  {
+   "id": 41,
+   "name": "Дорблю оригинал Германия",
+   "category": "blue",
+   "description": "Dorblu Classic (Käserei Champignon, Германия) — «голубое золото»: голубой сыр из пастеризованного коровьего молока с нежной пикантностью и кремовой консистенцией. Плесень Penicillium roqueforti.",
+   "price": null,
+   "available": true,
+   "photo": "images/41.jpg",
+   "sort": 41
+  },
+  {
+   "id": 42,
+   "name": "Бри и камамбер (Käserei ж/б Германия 125 г)",
+   "category": "soft",
+   "description": "Käserei Champignon Brie и Camembert в жестяной банке 125 г, Германия. Мягкие сыры с белой плесенью из пастеризованного коровьего молока: бри мягче и сливочнее, камамбер пикантнее. Банка с ключом сохраняет свежесть.",
+   "price": null,
+   "available": true,
+   "photo": "images/42.jpg",
+   "sort": 42
+  },
+  {
+   "id": 43,
+   "name": "Сантагюр",
+   "category": "blue",
+   "description": "Saint Agur — французский мягкий голубой сыр из Оверни. Жирность 60%, выдержка около 2 месяцев. Нежнее рокфора, кремовый. Восьмигранная форма головок.",
+   "price": null,
+   "available": true,
+   "photo": "images/43.jpg",
+   "sort": 43
+  },
+  {
+   "id": 44,
+   "name": "Grana padano",
+   "category": "hard",
+   "description": "Grana Padano DOP. Классический итальянский твёрдый сыр, зернистая текстура, сладковато-ореховый вкус, выдержка от 9 месяцев.",
+   "price": null,
+   "available": true,
+   "photo": "images/44.jpg",
+   "sort": 44
+  },
+  {
+   "id": 45,
+   "name": "Pecorino romano",
+   "category": "hard",
+   "description": "Pecorino Romano DOP. Твёрдый овечий сыр из Лацио и Сардинии: солёный, интенсивный, слегка пикантный.",
+   "price": null,
+   "available": true,
+   "photo": "images/45.jpg",
+   "sort": 45
+  },
+  {
+   "id": 46,
+   "name": "Pecorino romano nero",
+   "category": "hard",
+   "description": "Pecorino Romano с чёрной коркой. Классический овечий Romano в традиционном чёрном покрытии, плотная текстура, солёный вкус.",
+   "price": null,
+   "available": true,
+   "photo": "images/46.jpg",
+   "sort": 46
+  },
+  {
+   "id": 47,
+   "name": "Gorgonzola Igor синяя",
+   "category": "blue",
+   "description": "Gorgonzola DOP Dolce «In Blu» (IGOR, Новара) — классическая сладкая горгонзола в синей упаковке: мягкий молочный вкус, кремовая текстура, нежные голубые прожилки.",
+   "price": null,
+   "available": true,
+   "photo": "images/47.jpg",
+   "sort": 47
+  },
+  {
+   "id": 48,
+   "name": "Gorgonzola Igor Gran Riserva",
+   "category": "blue",
+   "description": "Gorgonzola DOP Gran Riserva Leonardi — флагманская горгонзола IGOR, всего около 300 головок в день. Кремовая текстура, насыщенный, выразительный вкус.",
+   "price": null,
+   "available": true,
+   "photo": "images/48.jpg",
+   "sort": 48
+  },
+  {
+   "id": 49,
+   "name": "Casa Leonardi (Gorgonzola Igor)",
+   "category": "blue",
+   "description": "Gorgonzola DOP Dolce Casa Leonardi (IGOR) — классическая сладкая горгонзола: нежный, слегка сладковатый молочный вкус с лёгкой кислинкой, сверхкремовая, почти намазываемая текстура, тонкие голубые прожилки.",
+   "price": null,
+   "available": true,
+   "photo": "images/49.jpg",
+   "sort": 49
+  },
+  {
+   "id": 50,
+   "name": "Gorgonzola Igor crema",
+   "category": "blue",
+   "description": "Gorgonzola IGOR Creme — классическая кремовая горгонзола дольче. Мягкий голубой сыр с очень нежной текстурой.",
+   "price": null,
+   "available": true,
+   "photo": "images/50.jpg",
+   "sort": 50
+  },
+  {
+   "id": 51,
+   "name": "Gorgonzola Igor чёрная",
+   "category": "blue",
+   "description": "Gorgonzola DOP Piccante (IGOR, чёрная упаковка) — выдержанная пикантная горгонзола: более плотная, с интенсивным, острым вкусом и выраженными голубыми прожилками.",
+   "price": null,
+   "available": true,
+   "photo": "images/51.jpg",
+   "sort": 51
+  },
+  {
+   "id": 52,
+   "name": "Oude Meije",
+   "category": "hard",
+   "description": "Oude Meije — северо-голландский сыр 2-летней выдержки (100 недель) из Лютьевинкела. Насыщенный вкус, плотная текстура, ещё режется ножом, хорош кубиками на сырной доске.",
+   "price": null,
+   "available": true,
+   "photo": "images/52.jpg",
+   "sort": 52
+  },
+  {
+   "id": 53,
+   "name": "Président Brie Lingot",
+   "category": "soft",
+   "description": "Président Lingot — французский мягкий сыр с белой плесенью типа бри в форме прямоугольного «слитка»: удобно нарезать ровными ломтиками. Неизменно мягкий сливочный вкус, пастеризованное коровье молоко.",
+   "price": null,
+   "available": true,
+   "photo": "images/53.jpg",
+   "sort": 53
+  }
+ ]
+}
