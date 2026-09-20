@@ -352,9 +352,12 @@ function cartLineHTML({ product, grams, sum }) {
 
 function sendURL(kind, text) {
   const q = `?text=${encodeURIComponent(text)}`;
-  return kind === 'wa'
-    ? `https://wa.me/${state.config.whatsapp}${q}`
-    : `https://t.me/${state.config.telegram}${q}`;
+  if (kind === 'wa') return `https://wa.me/${state.config.whatsapp}${q}`;
+  if (kind === 'tg') return `https://t.me/${state.config.telegram}${q}`;
+  // MAX не умеет открывать чат с человеком с готовым текстом — только профиль;
+  // текст заказа копируется в буфер при клике (см. initCart).
+  const m = String(state.config.max).trim();
+  return /^https?:\/\//i.test(m) ? m : `https://max.ru/${m.replace(/^@/, '')}`;
 }
 
 // Ссылка «выключена»: без href (ctrl/средний клик, long-press ничего не откроют), но остаётся
@@ -439,9 +442,10 @@ function renderCartPanel() {
   const canSend = cart.canSend();
   if (state.config.whatsapp) setSendLink(els.sendWa, sendURL('wa', text), !canSend);
   if (state.config.telegram) setSendLink(els.sendTg, sendURL('tg', text), !canSend);
+  if (state.config.max) setSendLink(els.sendMax, sendURL('max', text), !canSend);
   const c = cart.customer;
   const needContact = !empty && !(c.name || '').trim() && !(c.phone || '').trim();
-  const hasLinks = Boolean(state.config.whatsapp || state.config.telegram);
+  const hasLinks = Boolean(state.config.whatsapp || state.config.telegram || state.config.max);
   els.sendHint.classList.toggle('visually-hidden', !(needContact && hasLinks));
 
   els.copyOrder.disabled = empty;
@@ -499,6 +503,7 @@ function initCart() {
 
   els.sendWa.hidden = !cfg.whatsapp;
   els.sendTg.hidden = !cfg.telegram;
+  els.sendMax.hidden = !cfg.max;
 
   // Список позиций: редактирование граммов и удаление.
   els.cartItems.addEventListener('click', (e) => {
@@ -527,7 +532,7 @@ function initCart() {
 
   // Кнопки отправки — делегированный клик: сохраняем «последний заказ» и даём ссылке сработать.
   // Выключенная ссылка (без href) объясняет, чего не хватает, и ведёт к полю имени.
-  const sendLinkOf = (e) => e.target.closest('#send-wa, #send-tg');
+  const sendLinkOf = (e) => e.target.closest('#send-wa, #send-tg, #send-max');
   const isDisabledLink = (link) => link.getAttribute('aria-disabled') === 'true';
   const explainDisabled = () => {
     if (cart.getTotals().count === 0) return;
@@ -540,6 +545,12 @@ function initCart() {
     if (isDisabledLink(link)) { e.preventDefault(); explainDisabled(); return; }
     cart.saveLastOrder();
     els.repeatOrder.hidden = !cart.hasLastOrder();
+    if (link.id === 'send-max') {
+      // Копируем в буфер внутри жеста пользователя, не дожидаясь результата — ссылка открывается сразу.
+      const text = els.orderText.value;
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).catch(() => {});
+      showCartNotice('Текст заказа скопирован — вставьте его в чат MAX');
+    }
   });
   // Средний клик и ctrl/⌘-клик — обход через auxclick; без href браузер и так ничего не откроет,
   // но у выключенной ссылки не должно быть и побочных действий.
@@ -731,7 +742,7 @@ export function initUI({ catalog, cart, config }) {
     cartSummary: document.querySelector('#cart-details > summary'), cartNotice: $('cart-notice'),
     cartEmpty: $('cart-empty'), cartItems: $('cart-items'), cartTotal: $('cart-total'),
     customerForm: $('customer-form'), sendHint: $('send-hint'), cartActions: document.querySelector('.cart-actions'),
-    sendWa: $('send-wa'), sendTg: $('send-tg'), copyOrder: $('copy-order'), copyStatus: $('copy-status'),
+    sendWa: $('send-wa'), sendTg: $('send-tg'), sendMax: $('send-max'), copyOrder: $('copy-order'), copyStatus: $('copy-status'),
     repeatOrder: $('repeat-order'), clearCart: $('clear-cart'), orderText: $('order-text'),
     lightbox: $('lightbox'), lightboxImg: $('lightbox-img'), lightboxCaption: $('lightbox-caption'),
     lightboxClose: $('lightbox-close'),

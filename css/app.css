@@ -16,6 +16,7 @@
   --c-danger: #c0392b;
   --c-wa: #0f7a6b;             /* WhatsApp: белый текст 5.2:1 (#128C7E даёт только 4.1:1) */
   --c-tg: #0b6fa4;             /* Telegram: белый текст 5.5:1 */
+  --c-max: #4a3fbf;            /* MAX: белый текст 6.9:1 */
   --c-hint-bg: #fff3cd;
   --c-hint-border: #ffe08a;
   --c-hint-text: #6b5300;
@@ -276,6 +277,7 @@ button, a.btn, summary { touch-action: manipulation; }
 }
 .btn-wa { background: var(--c-wa); color: #fff; }
 .btn-tg { background: var(--c-tg); color: #fff; }
+.btn-max { background: var(--c-max); color: #fff; }
 .btn-accent { background: var(--c-accent); color: var(--c-text); }
 .btn-accent:active { background: var(--c-accent-2); }
 .btn-accent.copied { background: var(--c-wa); color: #fff; }
