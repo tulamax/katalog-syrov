@@ -1,7 +1,7 @@
 // Офлайн-режим каталога. Менять CACHE_VERSION при каждом деплое css/js/index.html —
 // иначе клиенты увидят старые файлы (stale-while-revalidate обновит их только к следующему открытию).
 // Фото под тем же именем смены версии не требуют: кэш фото без версии, с фоновой ревалидацией.
-const CACHE_VERSION = 'v2026-09-20-5';
+const CACHE_VERSION = 'v2026-09-22-1';
 
 // Origin tulamax.github.io общий с другими проектами — свои кэши узнаём по префиксу
 const PREFIX = 'katalog-syrov-';
@@ -14,6 +14,7 @@ const PRECACHE_FILES = [
   'js/app.js',
   'js/ui.js',
   'js/cart.js',
+  'js/phone.js',
   'js/catalog.js',
   'js/config.js',
   'data/products.json',

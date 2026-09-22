@@ -2,6 +2,7 @@
 // Все данные приходят из catalog.js/cart.js; здесь только DOM.
 import { categoryLabel } from './catalog.js';
 import { formatMoney, formatGrams, parseGramsInput } from './cart.js';
+import { nextPhoneValue, hasPhoneDigits } from './phone.js';
 
 const SEARCH_DEBOUNCE_MS = 150;
 const COPY_FEEDBACK_MS = 1800;
@@ -459,6 +460,27 @@ function renderCartPanel() {
   }
 }
 
+// Телефон: код страны набирать не нужно — «+7 » появляется от первой цифры («9» → «+7 9»,
+// привычные «8» или «7» в начале превращаются в «+7 »), дальше номер форматируется на лету.
+// Подставлять префикс при фокусе нельзя: тогда «8», набранная по привычке, попадала бы в номер.
+// В корзину уходит только номер с цифрами после префикса — один «+7 » не считается контактом.
+function initPhoneField(input, cart) {
+  let prev = input.value;
+  const commit = () => cart.setCustomer({ phone: hasPhoneDigits(input.value) ? input.value : '' });
+  input.addEventListener('input', (e) => {
+    const next = nextPhoneValue(input.value, { prev, inputType: e.inputType || '' });
+    if (next !== input.value) {
+      input.value = next;
+      input.setSelectionRange(next.length, next.length);
+    }
+    prev = next;
+    commit();
+  });
+  input.addEventListener('blur', () => {
+    if (!hasPhoneDigits(input.value)) { input.value = ''; prev = ''; commit(); }
+  });
+}
+
 async function copyOrder() {
   const text = els.orderText.value;
   if (!text) return;
@@ -526,8 +548,10 @@ function initCart() {
 
   // Данные покупателя.
   for (const [k, el] of Object.entries(els.customer)) {
+    if (k === 'phone') continue; // телефон — ниже, со своим форматированием
     el.addEventListener('input', () => cart.setCustomer({ [k]: el.value }));
   }
+  initPhoneField(els.customer.phone, cart);
   els.customerForm.addEventListener('submit', (e) => e.preventDefault());
 
   // Кнопки отправки — делегированный клик: сохраняем «последний заказ» и даём ссылке сработать.

@@ -295,6 +295,50 @@ test('5. кнопки отправки: disabled без контакта, href �
   await expect.poll(() => orderTextOf(wa)).toContain(`• ${product.name} — 250 г`);
 });
 
+test('5б. телефон: «+7 » от первой цифры, «8» → «+7», форматирование, backspace, пустой префикс не считается контактом', async ({ page }) => {
+  await useTestConfig(page);
+  await openShop(page);
+  await card(page, ITEM).locator('.preset[data-grams="100"]').click();
+  await openCart(page);
+  const phone = page.locator('#cust-phone');
+  const wa = page.locator('#send-wa');
+
+  await phone.focus();
+  await expect(phone).toHaveValue(''); // префикс не подставляется заранее — появится от первой цифры
+  await expect(wa).toHaveAttribute('aria-disabled', 'true');
+
+  await phone.pressSequentially('8');
+  await expect(phone).toHaveValue('+7 '); // «8» по привычке → код страны
+  await expect(wa).toHaveAttribute('aria-disabled', 'true'); // один префикс — не контакт
+  await phone.pressSequentially('9156826702');
+  await expect(phone).toHaveValue('+7 915 682-67-02');
+  await expect(wa).toHaveAttribute('aria-disabled', 'false');
+  expect(await orderTextOf(wa)).toContain('Телефон: +7 915 682-67-02');
+
+  // backspace через разделитель «-» удаляет цифру, а не залипает
+  await phone.press('Backspace');
+  await phone.press('Backspace');
+  await phone.press('Backspace');
+  await expect(phone).toHaveValue('+7 915 682-6');
+
+  // стёрли всё до префикса → поле очищается, кнопка снова неактивна
+  for (let i = 0; i < 12; i++) await phone.press('Backspace');
+  await expect(phone).toHaveValue('');
+  await expect(wa).toHaveAttribute('aria-disabled', 'true');
+
+  // набор без кода страны: «9…» → «+7 9…»
+  await phone.pressSequentially('9');
+  await expect(phone).toHaveValue('+7 9');
+  await phone.press('Backspace');
+  await expect(phone).toHaveValue('+7 ');
+  await page.locator('#cust-name').focus(); // ушли с одним префиксом → поле очищается
+  await expect(phone).toHaveValue('');
+
+  // вставка номера целиком в другом формате
+  await phone.fill('8 (915) 000-11-22');
+  await expect(phone).toHaveValue('+7 915 000-11-22');
+});
+
 test('5а. кнопки отправки показаны только при заполненном CONFIG', async ({ page }) => {
   const { CONFIG } = await import(pathToFileURL(rootFile('js/config.js')).href);
   await openShop(page);
