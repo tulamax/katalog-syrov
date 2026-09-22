@@ -8,6 +8,7 @@ import { pathToFileURL, fileURLToPath } from 'node:url';
 const TEST_WA = '79990000000';
 const TEST_TG = 'cheese_test';
 const TEST_MAX = 'https://max.ru/cheese_test_max';
+const TEST_SMS = '79990000001';
 const ITEM = 6;       // Landana 1000 дн
 const ITEM2 = 43;     // Сантагюр
 const TEST_PRICE = 550; // цена, которую подставляем товару ITEM в сценарии 3
@@ -53,7 +54,8 @@ async function useTestConfig(page, { sheetId } = {}) {
   let patched = src
     .replace(/whatsapp:\s*(['"`])[^'"`]*\1/, `whatsapp: '${TEST_WA}'`)
     .replace(/telegram:\s*(['"`])[^'"`]*\1/, `telegram: '${TEST_TG}'`)
-    .replace(/max:\s*(['"`])[^'"`]*\1/, `max: '${TEST_MAX}'`);
+    .replace(/max:\s*(['"`])[^'"`]*\1/, `max: '${TEST_MAX}'`)
+    .replace(/sms:\s*(['"`])[^'"`]*\1/, `sms: '${TEST_SMS}'`);
   expect(patched, 'в js/config.js найдены поля whatsapp/telegram').not.toBe(src);
   if (sheetId !== undefined) {
     const withSheet = patched.replace(/sheetId:\s*(['"`])[^'"`]*\1/, `sheetId: '${sheetId}'`);
@@ -278,6 +280,14 @@ test('5. кнопки отправки: disabled без контакта, href �
   expect(await page.locator('#order-text').inputValue()).toBe(text);
   expect((await tg.getAttribute('href')).startsWith(`https://t.me/${TEST_TG}?text=`)).toBe(true);
 
+  // SMS: sms:+номер?body=текст; на десктопе кнопка скрыта стилями, href всё равно актуален.
+  const sms = page.locator('#send-sms');
+  await expect(sms).toHaveAttribute('aria-disabled', 'false');
+  const smsHref = await sms.getAttribute('href');
+  expect(smsHref.startsWith(`sms:+${TEST_SMS}?body=`)).toBe(true);
+  expect(decodeURIComponent(smsHref.split('?body=')[1])).toContain(`• ${product.name} — 200 г`);
+  await (isPhone(page) ? expect(sms).toBeVisible() : expect(sms).toBeHidden());
+
   // MAX: чат с готовым текстом не умеет — ссылка на профиль, текст копируется в буфер при клике.
   const mx = page.locator('#send-max');
   await expect(mx).toBeVisible();
@@ -346,6 +356,7 @@ test('5а. кнопки отправки показаны только при з
   await (CONFIG.whatsapp ? expect(page.locator('#send-wa')).toBeVisible() : expect(page.locator('#send-wa')).toBeHidden());
   await (CONFIG.telegram ? expect(page.locator('#send-tg')).toBeVisible() : expect(page.locator('#send-tg')).toBeHidden());
   await (CONFIG.max ? expect(page.locator('#send-max')).toBeVisible() : expect(page.locator('#send-max')).toBeHidden());
+  await ((CONFIG.sms && isPhone(page)) ? expect(page.locator('#send-sms')).toBeVisible() : expect(page.locator('#send-sms')).toBeHidden());
 });
 
 test('6. «Повторить прошлый заказ» после отправки восстанавливает очищенную корзину', async ({ page, context }) => {
