@@ -288,16 +288,32 @@ test('5. кнопки отправки: disabled без контакта, href �
   expect(decodeURIComponent(smsHref.split('?body=')[1])).toContain(`• ${product.name} — 200 г`);
   await (isPhone(page) ? expect(sms).toBeVisible() : expect(sms).toBeHidden());
 
-  // MAX: чат с готовым текстом не умеет — ссылка на профиль, текст копируется в буфер при клике.
+  // MAX: чат с готовым текстом не умеет — клик копирует заказ и показывает окно с инструкцией,
+  // чат открывается кнопкой в окне.
   const mx = page.locator('#send-max');
   await expect(mx).toBeVisible();
   await expect(mx).toHaveAttribute('aria-disabled', 'false');
   await expect(mx).toHaveAttribute('href', TEST_MAX);
+  await mx.click();
+  const dlg = page.locator('#max-dialog');
+  await expect(dlg).toBeVisible();
+  expect(context.pages().length, 'клик по MAX не открывает чат сразу').toBe(1);
+  await expect(dlg).toContainText('Ctrl+V');
+  const open = page.locator('#max-open');
+  await expect(open).toBeFocused();
+  await expect(open).toHaveAttribute('href', TEST_MAX);
+  await expect(open).toHaveAttribute('target', '_blank');
   await context.route('**/max.ru/**', (route) => route.fulfill({ status: 200, contentType: 'text/html', body: '<title>max stub</title>' }));
   const popup = context.waitForEvent('page');
-  await mx.click();
+  await open.click();
   await (await popup).close();
-  await expect(page.locator('#cart-notice')).toContainText('скопирован');
+  await expect(dlg).toBeHidden();
+  // Escape закрывает окно и возвращает фокус на кнопку MAX.
+  await mx.click();
+  await expect(dlg).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(dlg).toBeHidden();
+  await expect(mx).toBeFocused();
 
   // href обновляется при каждом изменении корзины.
   await closeCart(page);

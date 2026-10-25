@@ -320,6 +320,21 @@ button, a.btn, summary { touch-action: manipulation; }
 }
 .sw-update .btn { flex: 0 0 auto; padding: 8px 12px; }
 
+/* ---------- Окно «как отправить в MAX» ---------- */
+.max-dialog {
+  width: min(440px, calc(100vw - 32px)); max-height: calc(100vh - 32px); overflow: auto;
+  padding: 20px; border: none; border-radius: var(--radius);
+  background: var(--c-card); color: var(--c-text); box-shadow: 0 8px 32px rgba(0, 0, 0, .3);
+}
+.max-dialog::backdrop { background: rgba(0, 0, 0, .55); }
+.max-dialog h2 { margin: 0 0 8px; font-size: 19px; color: var(--c-wa); }
+.max-dialog-lead { margin: 0 0 6px; font-size: 15px; }
+.max-dialog ol { margin: 0 0 14px; padding-left: 22px; font-size: 15px; line-height: 1.45; }
+.max-dialog li + li { margin-top: 6px; }
+.max-dialog-fail { margin: 0 0 14px; padding: 8px 10px; font-size: 14px; border-radius: 8px; color: var(--c-hint-text); background: var(--c-hint-bg); border: 1px solid var(--c-hint-border); }
+.max-dialog-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.max-dialog-actions #max-open { flex-basis: 100%; font-size: 16px; }
+
 /* ---------- Лайтбокс ---------- */
 #lightbox {
   position: fixed; inset: 0; z-index: 50;

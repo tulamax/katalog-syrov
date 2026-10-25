@@ -76,7 +76,7 @@
         <div class="cart-actions">
           <a id="send-wa" class="btn btn-wa" target="_blank" rel="noopener" role="link" tabindex="0" hidden aria-disabled="true" aria-describedby="send-hint" aria-label="Отправить заказ в WhatsApp">Отправить в WhatsApp</a>
           <a id="send-tg" class="btn btn-tg" target="_blank" rel="noopener" role="link" tabindex="0" hidden aria-disabled="true" aria-describedby="send-hint" aria-label="Отправить заказ в Telegram">Отправить в Telegram</a>
-          <a id="send-max" class="btn btn-max" target="_blank" rel="noopener" role="link" tabindex="0" hidden aria-disabled="true" aria-describedby="send-hint" aria-label="Написать в MAX — текст заказа будет скопирован">Написать в MAX</a>
+          <a id="send-max" class="btn btn-max" target="_blank" rel="noopener" role="link" tabindex="0" hidden aria-disabled="true" aria-describedby="send-hint" aria-label="Написать в MAX — текст заказа будет скопирован, его нужно вставить в чат">Написать в MAX</a>
           <a id="send-sms" class="btn btn-sms" role="link" tabindex="0" hidden aria-disabled="true" aria-describedby="send-hint" aria-label="Отправить заказ по SMS">Отправить SMS</a>
           <button type="button" id="copy-order" class="btn btn-accent" aria-label="Скопировать текст заказа">Скопировать текст</button>
           <button type="button" id="repeat-order" class="btn btn-muted" hidden aria-label="Повторить прошлый заказ">Повторить прошлый заказ</button>
@@ -113,6 +113,23 @@
   <span>Доступна новая версия</span>
   <button type="button" id="sw-reload" class="btn btn-accent">Обновить</button>
 </div>
+
+<!-- MAX не умеет принимать текст по ссылке: объясняем, как вставить скопированный заказ -->
+<dialog id="max-dialog" class="max-dialog" aria-labelledby="max-dialog-title">
+  <h2 id="max-dialog-title">Текст заказа скопирован</h2>
+  <p class="max-dialog-lead">MAX не вставляет текст сам — вставьте его в чат:</p>
+  <ol>
+    <li>Нажмите «Открыть чат MAX».</li>
+    <li>Щёлкните в поле сообщения и вставьте текст: <b>Ctrl+V</b> (на Mac — <b>⌘+V</b>, на телефоне — удерживайте палец в поле → «Вставить»).</li>
+    <li>Нажмите «Отправить».</li>
+  </ol>
+  <p class="max-dialog-fail" id="max-dialog-fail" hidden>Не удалось скопировать автоматически. Нажмите «Скопировать ещё раз» или выделите текст заказа в корзине.</p>
+  <div class="max-dialog-actions">
+    <a id="max-open" class="btn btn-max" target="_blank" rel="noopener">Открыть чат MAX</a>
+    <button type="button" id="max-copy" class="btn btn-accent">Скопировать ещё раз</button>
+    <button type="button" id="max-close" class="btn btn-muted">Закрыть</button>
+  </div>
+</dialog>
 
 <!-- Лайтбокс для фото -->
 <div id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption" hidden>

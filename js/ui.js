@@ -484,17 +484,18 @@ function initPhoneField(input, cart) {
   });
 }
 
-async function copyOrder() {
+// Копирует текст заказа в буфер; true — если получилось.
+async function copyOrderText() {
   const text = els.orderText.value;
-  if (!text) return;
-  let ok = false;
+  if (!text) return false;
   try {
     await navigator.clipboard.writeText(text);
-    ok = true;
+    return true;
   } catch {
     // iOS Safari: выделить readonly-textarea можно только через contentEditable.
     // Служебный фокус не должен двигать страницу и включать режим редактирования панели.
     const ta = els.orderText;
+    let ok = false;
     state.skipEditing = true;
     try {
       ta.removeAttribute('readonly');
@@ -508,7 +509,13 @@ async function copyOrder() {
     } finally {
       state.skipEditing = false;
     }
+    return ok;
   }
+}
+
+async function copyOrder() {
+  if (!els.orderText.value) return;
+  const ok = await copyOrderText();
   const btn = els.copyOrder;
   clearTimeout(state.copyTimer);
   const msg = ok ? '✓ Скопировано' : 'Не удалось — выделите текст ниже';
@@ -574,10 +581,10 @@ function initCart() {
     cart.saveLastOrder();
     els.repeatOrder.hidden = !cart.hasLastOrder();
     if (link.id === 'send-max') {
-      // Копируем в буфер внутри жеста пользователя, не дожидаясь результата — ссылка открывается сразу.
-      const text = els.orderText.value;
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).catch(() => {});
-      showCartNotice('Текст заказа скопирован — вставьте его в чат MAX');
+      // MAX не принимает текст по ссылке: копируем заказ (внутри жеста пользователя)
+      // и вместо мгновенного перехода показываем, как вставить его в чат.
+      e.preventDefault();
+      openMaxDialog(link.href);
     }
   });
   // Средний клик и ctrl/⌘-клик — обход через auxclick; без href браузер и так ничего не откроет,
@@ -701,6 +708,39 @@ function initCartBar() {
   });
 }
 
+/* ===================== Окно MAX ===================== */
+
+async function copyForMax() {
+  const ok = await copyOrderText();
+  els.maxFail.hidden = ok;
+  els.maxTitle.textContent = ok ? 'Текст заказа скопирован' : 'Скопируйте текст заказа';
+}
+
+function openMaxDialog(href) {
+  els.maxOpen.href = href;
+  els.maxFail.hidden = true;
+  els.maxTitle.textContent = 'Текст заказа скопирован';
+  copyForMax();
+  // Совсем старые браузеры без <dialog> (Safari < 15.4) — сразу в чат, как раньше.
+  if (typeof els.maxDialog.showModal !== 'function') { window.open(href, '_blank', 'noopener'); return; }
+  els.maxDialog.showModal();
+  els.maxOpen.focus();
+}
+
+function closeMaxDialog() {
+  if (els.maxDialog.open) els.maxDialog.close();
+}
+
+function initMaxDialog() {
+  // Ссылка открывает чат в новой вкладке; окно закрываем, чтобы не мешало, когда покупатель вернётся.
+  els.maxOpen.addEventListener('click', () => setTimeout(closeMaxDialog, 0));
+  els.maxCopy.addEventListener('click', copyForMax);
+  els.maxClose.addEventListener('click', closeMaxDialog);
+  // Клик по затемнению вокруг окна закрывает его.
+  els.maxDialog.addEventListener('click', (e) => { if (e.target === els.maxDialog) closeMaxDialog(); });
+  els.maxDialog.addEventListener('close', () => els.sendMax.focus({ preventScroll: true }));
+}
+
 /* ===================== Лайтбокс ===================== */
 
 // Всё вне лайтбокса недоступно для фокуса и читалки, пока он открыт.
@@ -774,6 +814,8 @@ export function initUI({ catalog, cart, config }) {
     repeatOrder: $('repeat-order'), clearCart: $('clear-cart'), orderText: $('order-text'),
     lightbox: $('lightbox'), lightboxImg: $('lightbox-img'), lightboxCaption: $('lightbox-caption'),
     lightboxClose: $('lightbox-close'),
+    maxDialog: $('max-dialog'), maxTitle: $('max-dialog-title'), maxFail: $('max-dialog-fail'),
+    maxOpen: $('max-open'), maxCopy: $('max-copy'), maxClose: $('max-close'),
     customer: { name: $('cust-name'), phone: $('cust-phone'), address: $('cust-address'), comment: $('cust-comment') },
   });
 
@@ -788,6 +830,7 @@ export function initUI({ catalog, cart, config }) {
 
   initHeader();
   initLightbox();
+  initMaxDialog();
   renderCatalog(catalog.products, catalog.categories);
   initCart();
 }
