@@ -31,7 +31,20 @@ async function main() {
 
 main().catch(showLoadError);
 
-// Новая версия сайта установилась (SW сменил controller): предлагаем обновить, сами не перезагружаем.
+// Пока покупатель ничего не нажимал и не вводил, новую версию можно подхватить молча:
+// корзина и контакты лежат в localStorage и переживают перезагрузку.
+let touched = false;
+for (const type of ['pointerdown', 'keydown', 'input']) {
+  window.addEventListener(type, () => { touched = true; }, { capture: true, once: true, passive: true });
+}
+
+// Новая версия сайта установилась (SW сменил controller): до первого действия — перезагружаем сами,
+// после — только предлагаем, чтобы не сбить покупателя посреди заказа.
+function onNewVersion() {
+  if (!touched) { location.reload(); return; }
+  showUpdateBanner();
+}
+
 function showUpdateBanner() {
   const box = document.getElementById('sw-update');
   if (!box || !box.hidden) return;
@@ -45,7 +58,7 @@ if ('serviceWorker' in navigator && (location.protocol === 'https:' || isLocal))
   const sw = navigator.serviceWorker;
   // Первая установка тоже меняет controller (clients.claim) — плашка нужна только при смене версии.
   const hadController = Boolean(sw.controller);
-  sw.addEventListener('controllerchange', () => { if (hadController) showUpdateBanner(); });
+  sw.addEventListener('controllerchange', () => { if (hadController) onNewVersion(); });
   window.addEventListener('load', () => {
     sw.register('sw.js').catch((err) => console.warn('SW не зарегистрирован', err));
   });
